@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider-3d {
+            position:relative;
+            width:750px;
+            height:500px;
+            margin:100px auto;
+        }
+        img {
+            display:block;
+            width:100%;
+
+        }
+        .slider-item {
+            position:absolute;
+            box-shadow:10px 20px 10px #999;
+            transition:all 0.6s cubic-bezier(0.39, 0.575, 0.565, 1)
+        }
+        .slider-item.first {
+            left:75px;
+            top:50px;
+            z-index: 3;
+            width:600px;
+            opacity:1;
+        }
+        .slider-item.third {
+            left:225px;
+            width:300px;
+            z-index: 1;
+            opacity:.3;
+        }
+        .slider-item.second {
+            top:117px;
+            z-index:2;
+            width:400px;
+            opacity: .6;
+        }
+        .slider-item.second.left {
+            left:0;
+        }
+        .slider-item.second.right {
+            left:350px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slider-3d">
+            <div class="slider-item first">
+                <a>
+                    <img src="./img/1.1.webp" alt="">
+                </a>
+            </div>
+            <div class="slider-item second right">
+                <a>
+                    <img src="./img/2.1.webp" alt="">
+                </a>
+            </div>
+            <div class="slider-item third">
+                <a>
+                    <img src="./img/3.1.webp" alt="">
+                </a>
+            </div>
+            <div class="slider-item second left">
+                <a>
+                    <img src="./img/4.1.webp" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const oSliderItems = document.querySelectorAll('.slider-item')
+    const classNames = [];
+
+    let t = null;
+    // 初始化
+    const init = () =>{
+        collectClassNames();
+        // setClassNames();
+        sliderAction();
+    }
+
+    // 重新改变类名
+    function render(){
+        let oSliderItem = null;
+        for (let i = 0;i<oSliderItems.length;i++){
+            oSliderItem = oSliderItems[i];
+            oSliderItem.className = classNames[i];
+        }
+    }
+
+    // 收集类名
+    function collectClassNames(){
+        let oSliderItem = null;
+
+        for(let i=0;i<oSliderItems.length;i++){
+            oSliderItem = oSliderItems[i];
+            classNames.push(oSliderItem.className);
+        }
+    }
+
+    // 更新类名数组，并重新熏染
+    function setClassNames(){
+        classNames.unshift(classNames.pop());
+        render();
+    }
+
+    // 轮播时间，设置定时器
+    function sliderAction(){
+        t = setInterval(setClassNames,3000);
+    }
+
+
+    init();
+
+
+
+
+</script>
+</html>

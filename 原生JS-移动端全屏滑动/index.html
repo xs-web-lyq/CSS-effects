@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 移动端，单位转化
+        document.documentElement.style.fontSize = 
+        document.documentElement.clientWidth / 37.5 + 'px'
+    </script>
+    <style>
+        body {
+            margin:0;
+        }
+        html,
+        body,
+        #app{
+            height:100%;
+        }
+        div {
+            display: flex;
+            width:100%;
+            /* flex-direction: column; */
+        }
+        .slider-page {
+            height:100%;
+            position:relative;
+            /* overflow:hidden; */
+        }
+        .scroll-wrapper {
+            position:absolute;
+            width:150rem;
+            height:100%;
+            flex-direction: row;
+        }
+        .slider-item {
+            height:100%;
+            flex:1;
+        }
+        .slider-item:nth-child(1) {
+            background-color:red;
+        }
+        .slider-item:nth-child(2) {
+            background-color:aqua;
+        }
+        .slider-item:nth-child(3) {
+            background-color:rgb(47, 0, 255);
+        }
+        .slider-item:nth-child(4) {
+            background-color:rgb(240, 134, 14);
+        }
+        .slider-item .inner {
+            height:100%;
+            justify-content:center;
+            align-items:center;
+            font-size:5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="slider-page">
+            <div class="scroll-wrapper">
+                <div class="slider-item">
+                    <div class="inner">PAGE-1</div>
+                </div>
+                <div class="slider-item">
+                    <div class="inner">PAGE-2</div>
+                </div>
+                <div class="slider-item">
+                    <div class="inner">PAGE-3</div>
+                </div>
+                <div class="slider-item">
+                    <div class="inner">PAGE-4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const oSliderPage = document.querySelector('.slider-page'),
+          oScrollWrapper = oSliderPage.querySelector('.scroll-wrapper'),
+          oSliderItems = oScrollWrapper.querySelectorAll('.slider-item'),
+          pageWidth = oSliderPage.offsetWidth;
+    /*
+        需要绑定的事件：touchstart touchmove touchend
+    */
+    let startX = 0,
+        pageIndeX = 0,
+        distanceX = 0,
+        isMove = false;
+
+
+    const init = ()=>{
+        bindEvent();
+    }
+    function bindEvent(){
+        oScrollWrapper.addEventListener('touchstart',handlerTouchStart,false);
+        oScrollWrapper.addEventListener('touchmove',handlerTouchMove,false);
+        oScrollWrapper.addEventListener('touchend',handlerTouchEnd,false);
+    }
+
+    function handlerTouchStart(e){
+        startX = e.touches[0].clientX;
+    }   
+
+    function handlerTouchMove(e){
+        const moveX = e.touches[0].clientX;
+        if((moveX > startX && pageIndeX === 0) ||
+            (moveX < startX && pageIndeX === oSliderItems.length - 1)){
+            return;
+        }
+        distanceX = moveX - startX;
+       
+       setTranslateX( - pageWidth * pageIndeX + distanceX);
+       isMove = true;
+    }
+
+    function handlerTouchEnd(){
+        if(isMove){
+            if(Math.abs(distanceX) >= pageWidth / 3){
+                if(distanceX>0){
+                    pageIndeX--;
+                }
+                if(distanceX<0){
+                    pageIndeX++;
+                }
+            }
+            setTranslateX( -pageIndeX * pageWidth);
+        }
+
+        startX = 0;
+        distanceX = 0;
+        isMove = false;
+    }
+
+    function setTranslateX(transX){
+        oScrollWrapper.style.transition = 'all .1s';
+        oScrollWrapper.style.transform = `translateX(${transX}px)`;
+    }
+
+
+    init();
+</script>
+</html>

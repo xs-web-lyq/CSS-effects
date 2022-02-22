@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 给手机端制作页面一定要添加下面meta标签 -->
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        ul,ol {
+            list-style: none;
+            
+        }
+        a {
+            color:black;
+            text-decoration: none;
+        }
+        header {
+            /* display: flex; */
+            position:relative;
+        }
+        .log {
+            width:100px;
+            height:100px;
+            background-color: black;
+            border-radius: 50px;
+        }
+        header > button {
+            position:absolute;
+            top:20px;
+            right:20px;
+        }
+        header .nav {
+            margin-top: 10px;
+            display: none;
+        }
+        .nav.active{
+            display: flex;
+            justify-content: space-around;
+        }
+        .nav2 {
+            display: none;
+        }             
+
+         @media(min-width:451px){
+            header {
+                display: flex;
+             }
+            header > button {
+                display: none;
+            }
+            header .nav {
+                display: none;
+            }
+            .nav2 {
+                display: block;
+            }
+            header .nav2{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+            }
+            header .nav2 li{
+                margin:0 10px;
+                
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="log"></div>
+        <button id="btn">菜单</button>
+    
+        <ul id="nav" class="nav">
+            <li><a href="">项目1</a> </li>
+            <li><a href="">项目2</a></li>
+            <li><a href="">项目3</a></li>
+            <li><a href="">项目4</a></li>
+        </ul>
+
+        <ul class="nav2">
+            <li><a href="">项目1</a> </li>
+            <li><a href="">项目2</a></li>
+            <li><a href="">项目3</a></li>
+            <li><a href="">项目4</a></li>
+        </ul>
+    </header>
+</body>
+<script>
+    btn.onclick=function(){
+        nav.classList.toggle('active')
+    }
+</script>
+</html>

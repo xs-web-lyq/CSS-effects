@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            height:100vh;
+            flex-direction: column;
+        }
+        header {
+            height:100px;
+            background-color: gray;
+        }
+        main {
+            display: flex;
+            flex:1;
+            overflow: auto;
+        }
+        main .left {
+            width:100px;
+            height:100%;
+            background-color: aqua;
+            order:3;
+        }
+        main .center {
+            flex:1;
+            order:2;
+        }
+        main .right {
+            width:100px;
+            height:100%; 
+            order:1;
+            background:green;
+        }
+        footer {
+            height:100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>header</header>
+        <main>
+            <div class="left"></div>
+            <div class="center">
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+                <p>main</p>
+            </div>
+            <div class="right"></div>
+        </main>
+        <footer>footer</footer>
+    </div>
+</body>
+</html>
